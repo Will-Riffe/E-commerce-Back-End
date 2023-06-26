@@ -1,28 +1,111 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
+
+
+
 // The `/api/tags` endpoint
 
-router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
+
+
+// route to fetch ALL TAGS
+router.get('/', function(req, res) {
+  Tag.findAll({
+    include: [
+      {
+        model: Product,
+        through: ProductTag,
+      },
+    ],
+  })
+    .then(function(tags) {
+      res.status(200).json(tags);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
 });
 
-router.get('/:id', (req, res) => {
-  // find a single tag by its `id`
-  // be sure to include its associated Product data
+
+
+
+// route to fetch SPECIFIC TAG BY ID
+router.get('/:id', function(req, res) {
+  Tag.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: Product,
+        through: ProductTag,
+      },
+    ],
+  })
+    .then(function(tag) {
+      if (tag) {
+        res.status(200).json(tag);
+      } else {
+        res.status(404).json({ message: 'Tag not found' });
+      }
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
+    });
 });
 
-router.post('/', (req, res) => {
-  // create a new tag
+
+
+
+// route to CREATE A NEW TAG
+router.post('/', function(req, res) {
+  Tag.create(req.body)
+    .then(function(tag) {
+      res.status(200).json(tag);
+    })
+    .catch(function(err) {
+      res.status(404).json(err);
+    });
 });
 
-router.put('/:id', (req, res) => {
-  // update a tag's name by its `id` value
+
+
+
+// route to UPDATE TAG BY ID
+router.put('/:id', function(req, res) {
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then(function(tag) {
+      res.status(200).json(tag);
+    })
+    .catch(function(err) {
+      res.status(404).json(err);
+    });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete on tag by its `id` value
+
+
+
+// route to DELETE TAG BY ID
+router.delete('/:id', function(req, res) {
+  Tag.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then(function(tag) {
+      res.status(200).json(tag);
+    })
+    .catch(function(err) {
+      res.status(404).json(err);
+    });
 });
+
+
+
+
 
 module.exports = router;
