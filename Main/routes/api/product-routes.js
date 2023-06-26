@@ -3,6 +3,10 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
+
+
+
+
 // get all products
 router.get('/', function(req, res) {
   Product.findAll({
@@ -22,6 +26,9 @@ router.get('/', function(req, res) {
       res.status(500).json(err);
     });
 });
+
+
+
 
 
 // get one product
@@ -46,6 +53,10 @@ router.get('/:id', function(req, res) {
       res.status(400).json(err);
     });
 });
+
+
+
+
 
 
 // create new product
@@ -79,6 +90,10 @@ router.post('/', (req, res) => {
       res.status(400).json(err);
     });
 });
+
+
+
+
 
 // update product
 router.put('/:id', function(req, res) {
@@ -129,6 +144,10 @@ router.put('/:id', function(req, res) {
       res.status(400).json(err);
     });
 });
+
+
+
+
 
 router.delete('/:id', function(req, res) {
   Product.destroy({
