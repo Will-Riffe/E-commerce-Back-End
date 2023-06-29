@@ -28,7 +28,7 @@
 ## Demonstration Video
 
   ## Usage
-  Usage of this application is open and free to whoever wishes to use it, for whatever purpose they have in mind. Much credit goes to EdX Bootcamps, and Rutgers bootcamps for providing the development files and instructions on how to formulate the code for this application.
+  Usage of this application is open and free to whoever wishes to use it, for whatever purpose they have in mind. Much credit goes to EdX Bootcamps, and Rutgers bootcamps for providing the development files and instructions on how to formulate the code for this application. Further thanks to [Muhammad Moghal](https://github.com/mmoghal/E-Commerce-Backend/tree/main) whose code I also drew inspiration on during the development of the code, such as the routes.
 
   ## License
   ![None License](https://img.shields.io/badge/License-None-blue.svg)
