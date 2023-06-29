@@ -6,7 +6,7 @@
   ## Table of Contents
   - [Getting started](#getting-started)
   - [Demonstration Video](#demonstration-video)
-  - [Usage](#usage)
+  - [Usage & Reference](#usage--reference)
   - [License](#license)
   - [Contributing](#contributing)
   - [Questions](#questions)
@@ -27,7 +27,7 @@
 
 ## Demonstration Video
 
-  ## Usage
+  ## Usage & Reference
   Usage of this application is open and free to whoever wishes to use it, for whatever purpose they have in mind. Much credit goes to EdX Bootcamps, and Rutgers bootcamps for providing the development files and instructions on how to formulate the code for this application. Further thanks to [Muhammad Moghal](https://github.com/mmoghal/E-Commerce-Backend/tree/main) whose code I also drew inspiration on during the development of the code, such as the routes.
 
   ## License
