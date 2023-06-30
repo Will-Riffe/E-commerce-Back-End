@@ -7,21 +7,26 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 
 
-// get all products
-router.get('/', function(req, res) {
+// Then, you can use the association in the code
+router.get('/', function (req, res) {
   Product.findAll({
     include: [
-      Category,
+      {
+        model: Category,
+      },
       {
         model: Tag,
-        through: ProductTag,
+        through: { model: ProductTag, 
+          attributes: { exclude: ['tag_id', 'productId', 'tagId'] } 
+        },
       },
     ],
+    attributes: { exclude: ['category_id', 'categoryId'] }
   })
-    .then(function(products) {
+    .then(function (products) {
       res.json(products);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
       res.status(500).json(err);
     });
@@ -31,8 +36,9 @@ router.get('/', function(req, res) {
 
 
 
+
 // get one product
-router.get('/:id', function(req, res) {
+router.get('/:id', function (req, res) {
   Product.findOne({
     where: {
       id: req.params.id,
@@ -42,13 +48,16 @@ router.get('/:id', function(req, res) {
       {
         model: Tag,
         through: ProductTag,
+        attributes: {
+          exclude: ['category_id', 'categoryId']
+        },
       },
     ],
   })
-    .then(function(products) {
+    .then(function (products) {
       res.json(products);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
       res.status(400).json(err);
     });
@@ -96,37 +105,37 @@ router.post('/', (req, res) => {
 
 
 // update product
-router.put('/:id', function(req, res) {
+router.put('/:id', function (req, res) {
   Product.update(req.body, {
     where: {
       id: req.params.id,
     },
   })
-    .then(function(product) {
+    .then(function (product) {
       if (req.body.tagIds && req.body.tagIds.length) {
         const productTags = ProductTag.findAll({ where: { product_id: req.params.id } });
-        const productTagIds = productTags.map(function(tag) {
+        const productTagIds = productTags.map(function (tag) {
           return tag.tag_id;
         });
-        
+
         // create filtered list of new tag_ids
         const newProductTags = req.body.tagIds
-          .filter(function(tag_id) {
+          .filter(function (tag_id) {
             return !productTagIds.includes(tag_id);
           })
-          .map(function(tag_id) {
+          .map(function (tag_id) {
             return {
               product_id: req.params.id,
               tag_id: tag_id,
             };
           });
-        
+
         // figure out which ones to remove
         const productTagsToRemove = productTags
-          .filter(function(tag) {
+          .filter(function (tag) {
             return !req.body.tagIds.includes(tag.tag_id);
           })
-          .map(function(tag) {
+          .map(function (tag) {
             return tag.id;
           });
 
@@ -139,7 +148,7 @@ router.put('/:id', function(req, res) {
 
       return res.json(product);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       // console.log(err);
       res.status(400).json(err);
     });
@@ -149,17 +158,17 @@ router.put('/:id', function(req, res) {
 
 
 
-router.delete('/:id', function(req, res) {
+router.delete('/:id', function (req, res) {
   Product.destroy({
     where: {
       id: req.params.id,
     },
   })
-    .then(function(products) {
+    .then(function (products) {
       console.log(products);
       res.json(products);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       console.log(err);
       res.status(400).json(err);
     });
