@@ -31,7 +31,11 @@ router.get('/:id', async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: [Product],
+      include: 
+      [
+        {model: Product,
+        attributes: {exclude: ['category_id', 'categoryId']}},
+      ],
     });
     res.json(category);
   } catch (err) {
