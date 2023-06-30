@@ -47,12 +47,12 @@ router.get('/:id', function (req, res) {
       Category,
       {
         model: Tag,
-        through: ProductTag,
-        attributes: {
-          exclude: ['category_id', 'categoryId']
+        through: { model: ProductTag, 
+          attributes: { exclude: ['tag_id', 'productId', 'tagId'] } 
         },
       },
     ],
+    attributes: { exclude: ['category_id', 'categoryId'] }
   })
     .then(function (products) {
       res.json(products);
@@ -130,7 +130,7 @@ router.put('/:id', function (req, res) {
             };
           });
 
-        // figure out which ones to remove
+        // chooses the ones to remove
         const productTagsToRemove = productTags
           .filter(function (tag) {
             return !req.body.tagIds.includes(tag.tag_id);

@@ -14,7 +14,10 @@ router.get('/', function(req, res) {
     include: [
       {
         model: Product,
-        through: ProductTag,
+        through: { model: ProductTag, 
+          attributes: { exclude: ['tag_id', 'productId', 'tagId'] }
+        },
+        attributes: { exclude: ['categoryId'] }
       },
     ],
   })
@@ -38,7 +41,10 @@ router.get('/:id', function(req, res) {
     include: [
       {
         model: Product,
-        through: ProductTag,
+        through: { model: ProductTag, 
+          attributes: { exclude: ['tag_id', 'productId', 'tagId'] }
+        },
+        attributes: { exclude: ['categoryId'] }
       },
     ],
   })
