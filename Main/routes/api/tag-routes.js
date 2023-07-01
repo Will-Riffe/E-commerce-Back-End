@@ -8,7 +8,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 
 
-// route to fetch ALL TAGS
+// Gets all the tags by querying get request to path localhost:3001/api/tags in insomnia or similar program
 router.get('/', function(req, res) {
   Tag.findAll({
     include: [
@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
 
 
 
-// route to fetch SPECIFIC TAG BY ID
+// Gets specified tags by querying get request to path localhost:3001/api/tags/id# in insomnia or similar program
 router.get('/:id', function(req, res) {
   Tag.findOne({
     where: {
@@ -63,7 +63,8 @@ router.get('/:id', function(req, res) {
 
 
 
-// route to CREATE A NEW TAG
+// User can post new tags by running a POST request to localhost:3001/api/tags in insomnia or similar program
+// along with appropriate JSON data, such as '{"tag_name": "Honey Makers"}'
 router.post('/', function(req, res) {
   Tag.create(req.body)
     .then(function(tag) {
@@ -77,7 +78,8 @@ router.post('/', function(req, res) {
 
 
 
-// route to UPDATE TAG BY ID
+// User can edit a tags by running a PUT request to localhost:3001/api/tags in insomnia or similar program
+// and specifying the id of the tag
 router.put('/:id', function(req, res) {
   Tag.update(req.body, {
     where: {
@@ -95,7 +97,7 @@ router.put('/:id', function(req, res) {
 
 
 
-// route to DELETE TAG BY ID
+// User can delete a specific tags by running DELETE to localhost:3001/api/tags/id# in insomnia or similar program
 router.delete('/:id', function(req, res) {
   Tag.destroy({
     where: {
