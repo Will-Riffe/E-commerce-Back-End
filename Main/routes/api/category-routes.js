@@ -5,7 +5,7 @@ const { Category, Product } = require('../../models');
 
 
 
-
+// Gets all the categories by querying get request to path localhost:3001/api/categories in insomnia or similar program
 router.get('/', async (req, res) => {
   try {
     const categories = await Category.findAll({
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
 
 
 
-
+// Gets specified category by querying get request to path localhost:3001/api/categories/id# in insomnia or similar program
 router.get('/:id', async (req, res) => {
   try {
     const category = await Category.findOne({
@@ -46,7 +46,7 @@ router.get('/:id', async (req, res) => {
 
 
 
-
+// User can post new category by running a POST request to localhost:3001/api/categories in insomnia or similar program
 router.post('/', async (req, res) => {
   try {
     const category = await Category.create(req.body);
@@ -59,7 +59,7 @@ router.post('/', async (req, res) => {
 
 
 
-
+// User can edit new category by running a PUT request to localhost:3001/api/categories in insomnia or similar program
 router.put('/:id', async (req, res) => {
   try {
     await Category.update(req.body, {
@@ -76,7 +76,7 @@ router.put('/:id', async (req, res) => {
 
 
 
-
+// User can delete a specific category by running DELETE to localhost:3001/api/categories/id# in insomnia or similar program
 router.delete('/:id', async (req, res) => {
   try {
     await Category.destroy({
