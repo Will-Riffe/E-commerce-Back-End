@@ -47,6 +47,7 @@ router.get('/:id', async (req, res) => {
 
 
 // User can post new category by running a POST request to localhost:3001/api/categories in insomnia or similar program
+// along with appropriate JSON data, such as '{"category_name": "Bees"}'
 router.post('/', async (req, res) => {
   try {
     const category = await Category.create(req.body);
@@ -59,7 +60,7 @@ router.post('/', async (req, res) => {
 
 
 
-// User can edit new category by running a PUT request to localhost:3001/api/categories in insomnia or similar program
+// User can edit a category by running a PUT request to localhost:3001/api/categories in insomnia or similar program
 router.put('/:id', async (req, res) => {
   try {
     await Category.update(req.body, {

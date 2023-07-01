@@ -68,7 +68,8 @@ router.get('/:id', function (req, res) {
 
 
 
-// create new product
+// User can post new product by running a POST request to localhost:3001/api/products in insomnia or similar program
+// along with appropriate data as outlined under Product.create
 router.post('/', (req, res) => {
   Product.create({
      product_name: req.body.product_name,
@@ -102,7 +103,7 @@ router.post('/', (req, res) => {
 
 
 
-// update product
+// User can edit a product by running a PUT request to localhost:3001/api/products/id# in insomnia or similar program
 router.put('/:id', function (req, res) {
   Product.update(req.body, {
     where: {
@@ -155,7 +156,7 @@ router.put('/:id', function (req, res) {
 
 
 
-
+// User can delete a specific product by running DELETE to localhost:3001/api/products/id# in insomnia or similar program
 router.delete('/:id', function (req, res) {
   Product.destroy({
     where: {
