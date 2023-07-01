@@ -26,18 +26,19 @@
 5. In Git Bash, start the app by running 'node start' in order to start the server, establishing the connection necessary for further Development and Testing through a seemless, API supportive environment.
 
 ## Demonstration Video
+  The following [Walkthrough Video](https://clipchamp.com/watch/mE7ou9XeLI2) demonstrates the basic operations of the application. 
 
-  ## Usage & Reference
+## Usage & Reference
   Usage of this application is open and free to whoever wishes to use it, for whatever purpose they have in mind. Much credit goes to EdX Bootcamps, and Rutgers bootcamps for providing the development files and instructions on how to formulate the code for this application. Further thanks to [Muhammad Moghal](https://github.com/mmoghal/E-Commerce-Backend/tree/main) whose code I also drew inspiration on during the development of the code, such as the routes.
 
-  ## License
+## License
   ![None License](https://img.shields.io/badge/License-None-blue.svg)
   This project is covered under the None License.
 
-  ## Contributing
+## Contributing
   No Contributions at this time.
 
 
-  ## Questions
+## Questions
   For questions or comments about this project, please contact me via [GitHub](https://github.com/Will-Riffe) or email at W_Riffe@protonmail.com.
   
